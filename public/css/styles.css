@@ -2,5 +2,137 @@
 *,
 *:before,
 *:after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  max-width: 100%;
+}
+html{
+  background: url(../images/site/checkerboard.jpg);
+}
+
+body{
+  border: 5px solid blue;
+  border-radius: 5px;
+}
+
+header, nav, footer, body{
+  width: 800px;
+  margin: 3px auto;
+  background-color: white;
+  border: 1x solid red;
+}
+#top-header{
+  background-color: white;
+}
+header{
+  background-color: aqua;
+  display: flex;
+  justify-content: space-between;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+  margin: 3px;
+  padding: 4px;
+}
+
+header a{
+  text-decoration: none;
+}
+.sitename{
+  font-size: 2em;
+}
+#tools{
+  font-size: 1.5em;
+}
+
+/* Navigation css */
+nav{
+  width: 99%;
+  margin: 3px;
+  padding: 6px;
+  background-color: black;
+}
+.ul-list {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  width: 100%;
+  color: white;
+  margin: 2px;
+  padding: 3px;
+}
+nav ul li{
+  list-style: none;
+  width: 100%;
+  text-align: center;
+}
+
+/* Css for hero image and context*/
+.declan{
+  display: flex;
+  margin: 40px;
+  width: 100%;
+}
+.declan img{
+  position: relative;
+  right: 120px;
+  top: 0;
+}
+
+.own-today{
+  color: aqua;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.466);
+  gap: 0;
+}
+.own-today li{
+  list-style: none;
+  width: 100%;
+  font-size: 1.2em;
+}
+.own-today div{
+  margin-top: 50px;
+}
+button{
+  font-size: 1em;
+  background-color: aqua;
+  margin: 15px;
+  padding: 20px;
+  width: 80%;
+  border-radius: 5px;
+  margin-top: 29px;
+}
+
+
+/* Upgrades and reviews Css */
+#upgrades-reviews{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.upgrades{
+  display: grid;
+  grid-template-columns: repeat(2, .4fr);
+  grid-gap: 10px;
+}
+.upgrades section{
+  background-color: rgba(10, 240, 240, 0.829);
+  margin: 0.1rem;
+  padding: 0.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.upgrades section img{
+  max-width: 100%;
+}
+
+.review section li {
+  margin: 20px;
+
+}
+
+footer{
+  margin-top: 20px;
 }

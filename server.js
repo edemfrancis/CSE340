@@ -6,21 +6,33 @@
  * Require Statements
  *************************/
 const express = require("express")
+const expresslayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 
+// View ENgines and templates
+app.set("view engine", "ejs")
+app.use(expresslayouts)
+app.set("layout", "./layouts/layout")
+
 /* ***********************
  * Routes
  *************************/
+
 app.use(static)
+app.get("/", (req, res) => {
+  res.render("index", {title:"Home"})
+})
 
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
- *************************/
+ *************************/ 
+
 const port = process.env.PORT
 const host = process.env.HOST
+
 
 /* ***********************
  * Log statement to confirm server operation
