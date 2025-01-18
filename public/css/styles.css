@@ -64,6 +64,7 @@ nav ul li{
   list-style: none;
   width: 100%;
   text-align: center;
+  justify-content: center;
 }
 
 /* Css for hero image and context*/
@@ -71,6 +72,7 @@ nav ul li{
   display: flex;
   margin: 40px;
   width: 100%;
+  font-size: clamp(0.5em , 2vw, 1.2rem); 
 }
 .declan img{
   position: relative;
@@ -92,6 +94,12 @@ nav ul li{
 .own-today div{
   margin-top: 50px;
 }
+.dmc h2{
+  font-size: clamp(16px, 2vw, 2rem);
+}
+.dmc ul li{
+  font-size: clamp(15px, 1.6vw, 1.8rem);  
+}
 button{
   font-size: 1em;
   background-color: aqua;
@@ -105,8 +113,8 @@ button{
 
 /* Upgrades and reviews Css */
 #upgrades-reviews{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .upgrades{
@@ -134,4 +142,13 @@ button{
 
 footer{
   margin-top: 20px;
+}
+
+/* @media mobile view */
+@media  screen and (min-width: 35rem) {
+  #upgrades-reviews{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: center;
+  }
 }
