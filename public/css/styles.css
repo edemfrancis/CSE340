@@ -20,7 +20,6 @@ header, nav, footer, body{
   width: 800px;
   margin: 3px auto;
   background-color: white;
-  border: 1x solid red;
 }
 #top-header{
   background-color: white;
@@ -80,7 +79,7 @@ nav ul li{
 }
 
 .own-today{
-  color: aqua;
+  color: rgb(12, 82, 104);
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.466);
   gap: 0;
