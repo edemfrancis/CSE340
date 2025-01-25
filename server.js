@@ -4,13 +4,14 @@
  *******************************************/
 /* ***********************
  * Require Statements
- *************************/
+ ************************ */
 const baseController = require("./controllers/baseController")
 const express = require("express")
 const expresslayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+const inventoryRoute = require("./routes/inventoryRoutes")
 
 // View ENgines and templates
 app.set("view engine", "ejs")
@@ -19,7 +20,7 @@ app.set("layout", "./layouts/layout")
 
 /* ***********************
  * Routes
- *************************/
+ ************************ */
 
 app.use("/inv", inventoryRoute)
 app.use(static)
