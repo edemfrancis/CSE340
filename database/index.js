@@ -1,5 +1,5 @@
 const { Pool } = require("pg")
-// import Pool from 'pg'
+
 require("dotenv").config()
 /* ***************
  * Connection Pool

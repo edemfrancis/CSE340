@@ -22,7 +22,7 @@ app.set("layout", "./layouts/layout")
  * Routes
  ************************ */
 
-app.use("/inv", inventoryRoute)
+app.use("/inv", inventoryRoute) // Inventory rouute
 app.use(static)
 app.get("/", baseController.buildHome)
 // app.get("/", (req, res) => {
@@ -32,7 +32,7 @@ app.get("/", baseController.buildHome)
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
- *************************/ 
+ ************************ */ 
 
 const port = process.env.PORT
 const host = process.env.HOST
