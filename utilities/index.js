@@ -99,7 +99,6 @@ Util.buildSpecificViewById = async function (data) {
         '<li>' + "<b> Price $" + 
         new Intl.NumberFormat("en-US").format(element.inv_price) +
         "</b>" + '</li>';
-      detalView += "<p> ";
       detalView += '<li> ' + '<b> Description:'  + '</b>' + element.inv_description + ' </li>';
       detalView += '<li>' + "<b> Color:" + "</b>" + " " + element.inv_color + '</li>';
       detalView += '<li>' + "<b> Miles:" + "</b>" +  " " + element.inv_miles + '</li>';
