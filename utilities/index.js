@@ -94,7 +94,7 @@ Util.buildSpecificViewById = async function (data) {
       detalView += "<h3>";
       detalView += element.inv_make + " " + element.inv_model;
       detalView += "</h3>";
-     
+      detalView += '<ul>';
       detalView +=
         '<li>' + "<b> Price $" + 
         new Intl.NumberFormat("en-US").format(element.inv_price) +
@@ -103,6 +103,7 @@ Util.buildSpecificViewById = async function (data) {
       detalView += '<li> ' + '<b> Description:'  + '</b>' + element.inv_description + ' </li>';
       detalView += '<li>' + "<b> Color:" + "</b>" + " " + element.inv_color + '</li>';
       detalView += '<li>' + "<b> Miles:" + "</b>" +  " " + element.inv_miles + '</li>';
+      detalView += '</ul>';
       detalView += "</div>";
       detalView += "</section>";
     });
