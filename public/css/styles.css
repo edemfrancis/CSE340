@@ -47,24 +47,41 @@ header a{
 /* Navigation css */
 nav{
   width: 99%;
-  margin: 3px;
+  margin: 1px;
   padding: 6px;
   background-color: black;
+}
+.home-page{
+  background-color: rgba(255, 0, 0, 0.349);
 }
 .ul-list {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   gap: 10px;
   width: 100%;
-  color: white;
   margin: 2px;
   padding: 3px;
+}
+.ul-list li a{
+  color: white;
+  text-decoration: none;
+  width: 100%;
+}
+.ul-list li a:hover {
+  color: rgba(0, 0, 0, 0.889);
 }
 nav ul li{
   list-style: none;
   width: 100%;
   text-align: center;
   justify-content: center;
+  border-radius: 3px;
+  padding: 10px;
+}
+nav ul li:hover{
+  background-color: rgba(255, 255, 255, 0.885);
+  margin: 1px;
 }
 
 /* Css for hero image and context*/
