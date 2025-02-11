@@ -47,7 +47,7 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({extend: true})) // for parsing application/x-www-form-urlencoded
+app.use(bodyparser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * Routes
