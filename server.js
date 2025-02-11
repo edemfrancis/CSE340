@@ -15,48 +15,49 @@ const inventoryRoute = require("./routes/inventoryRoutes");
 const utilities = require("./utilities/");
 const session = require("express-session");
 const pool = require("./database/");
-const accRoute = require("./routes/accountRoutes")
+const accRoute = require("./routes/accountRoutes");
 const bodyparser = require("body-parser");
-
 
 // View ENgines and templates
 app.set("view engine", "ejs");
 app.use(expresslayouts);
 app.set("layout", "./layouts/layout");
 
-
 /* ***********************
  * Middleware
  * ************************/
-app.use(session({
-  store: new (require('connect-pg-simple')(session))({
-    createTableIfMissing: true,
-    pool,
-  }),
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: true,
-  name: 'sessionId',
-}))
+app
+  .use(
+    session({
+      store: new (require("connect-pg-simple")(session))({
+        createTableIfMissing: true,
+        pool,
+      }),
+      secret: process.env.SESSION_SECRET,
+      resave: true,
+      saveUninitialized: true,
+      name: "sessionId",
+    })
+  )
 
 // Express Messages Middleware
-app.use(require('connect-flash')())
-app.use(function(req, res, next){
-  res.locals.messages = require('express-messages')(req, res)
-  next()
-})
-// app.use(bodyparser.json())
-// app.use(bodyparser.urlencoded({extend: true})) // for parsing application/x-www-form-urlencoded
+app.use(require("connect-flash")());
+app.use(function (req, res, next) {
+  res.locals.messages = require("express-messages")(req, res);
+  next();
+});
+app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({extend: true})) // for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * Routes
  ************************ */
-app.use(static)
+app.use(static);
 app.use("/inv", inventoryRoute); // Inventory route
 // Account Controller routes
-app.use("/account", accRoute)
+app.use("/account", accRoute);
 // WEEK 4 assignment
-app.use("/inventory", inventoryRoute)
+app.use("/inventory", inventoryRoute);
 
 app.get("/", utilities.handleErrors(baseController.buildHome));
 // app.get("/", (req, res) => {
@@ -67,8 +68,6 @@ app.get("/", utilities.handleErrors(baseController.buildHome));
 app.use(async (req, res, next) => {
   next({ status: 404, message: "Sorry, we appear to have lost that page." });
 });
-
-
 
 /* ***********************
  * Local Server Information
@@ -91,7 +90,7 @@ app.listen(port, () => {
  *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav();
-  
+
   if (err.status == 404) {
     // console.error(`Error at: "${req.originalUrl}": ${err.message}`);
     message = err.message;
