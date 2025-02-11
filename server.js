@@ -45,8 +45,8 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
-app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({extend: true})) // for parsing application/x-www-form-urlencoded
+// app.use(bodyparser.json())
+// app.use(bodyparser.urlencoded({extend: true})) // for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * Routes
