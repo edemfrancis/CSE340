@@ -59,7 +59,15 @@ app.use("/account", accRoute);
 // WEEK 4 assignment
 app.use("/inventory", inventoryRoute);
 
-app.get("/", utilities.handleErrors(baseController.buildHome));
+// Route to deliver Home page
+app.get("/", async (req, res, next) => {
+  try {
+    await utilities.handleErrors(baseController.buildHome)(req, res, next);
+  } catch (error) {
+    next(error);
+  }
+});
+// app.get("/", utilities.handleErrors(baseController.buildHome));
 // app.get("/", (req, res) => {
 //   res.render("index", {title:"Home"})
 // })
