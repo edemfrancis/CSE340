@@ -12,5 +12,6 @@
             "name": "render.com",
             "connectString": "postgresql://cse34012:jPKPgIki5VKThW8WmvxOCtrJMCCx8apq@dpg-cu8qcabqf0us73d88f80-a.oregon-postgres.render.com/cse34012"
         }
-    ]
+    ],
+    "editor.fontSize": 9
 }
