@@ -39,8 +39,10 @@ app
       name: "sessionId",
     })
   )
-
+  app.use(bodyparser.json())
+  app.use(bodyparser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded  
 // Express Messages Middleware
+
 app.use(require("connect-flash")());
 app.use(function (req, res, next) {
   res.locals.messages = require("express-messages")(req, res);
@@ -82,7 +84,7 @@ app.use(async (req, res, next) => {
  * Values from .env (environment) file
  ************************ */
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const host = process.env.HOST;
 
 /* ***********************

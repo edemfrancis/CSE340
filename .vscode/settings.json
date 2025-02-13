@@ -9,9 +9,8 @@
             "previewLimit": 50,
             "server": "localhost",
             "driver": "PostgreSQL",
-            "name": "Render",
+            "name": "render.com",
             "connectString": "postgresql://edemcse340:jzf7Hge04i21Jy9Hg76XnK5Juo5OPekD@dpg-culob852ng1s73auq1p0-a.oregon-postgres.render.com/edemcse340"
         }
     ],
-    "editor.fontSize": 9
 }
