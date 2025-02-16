@@ -44,5 +44,5 @@ router.post(
 )
 
 // WEEK 5 ASSIGNMNENT, creating aa route for displaying table in management view
-router.get("p/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 module.exports = router;
