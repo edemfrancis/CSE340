@@ -17,6 +17,7 @@ const session = require("express-session");
 const pool = require("./database/");
 const accRoute = require("./routes/accountRoutes");
 const bodyparser = require("body-parser");
+const cookieParser = require("cookie-parser")
 
 // View ENgines and templates
 app.set("view engine", "ejs");
@@ -50,6 +51,8 @@ app.use(function (req, res, next) {
 });
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * Routes
@@ -60,6 +63,7 @@ app.use("/inv", inventoryRoute); // Inventory route
 app.use("/account", accRoute);
 // WEEK 4 assignment
 app.use("/inventory", inventoryRoute);
+app.use("/manage", accRoute)
 
 // Route to deliver Home page
 app.get("/", async (req, res, next) => {

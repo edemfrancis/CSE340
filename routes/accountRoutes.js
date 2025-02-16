@@ -3,7 +3,7 @@ const router = new express.Router();
 const account = require("../controllers/accountControllers");
 const utilities = require("../utilities");
 const regValidate = require("../utilities/account-validation");
-const invCont = require("../controllers/invController");
+const invController = require("../controllers/invController")
 
 router.get("/login", utilities.handleErrors(account.buildLogin));
 router.get("/register", utilities.handleErrors(account.buildRegister));
@@ -16,4 +16,17 @@ router.post(
   utilities.handleErrors(account.registerAccount)
 );
 
-module.exports = router; 
+// week 5 assessment
+router.get("/", utilities.handleErrors(account.accountMananagement))
+
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(account.accountLogin)
+);
+
+// WEEK 5 ASSIGNMNENT, creating aa route for displaying table in management view
+router.get("/inv/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+module.exports = router;

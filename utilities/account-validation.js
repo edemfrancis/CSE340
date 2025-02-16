@@ -199,4 +199,39 @@ validate.checkVehicleData = async (req, res, next) => {
   next()
 }
 
+// week 5
+/***********************
+ * Login Validation Rules
+ */
+validate.loginRules = () => {
+  return [
+    body("account_email")
+    .trim()
+    .isEmail()
+    .normalizeEmail()    
+    .withMessage("Kindly provide a valid email address"),
+    body("account_password")
+    .trim()
+    .matches(/^[0-9a-zA-Z?!.*@]*$/)
+    .withMessage("Incorrect Login Credentials"),
+  ]
+}
+
+validate.checkLoginData = async (req, res, next) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const nav = await utilities.getNav();
+    const { account_email } = req.body;
+
+    return res.render("./account/login", {
+      title: "Login",
+      nav,
+      account_email,
+      errors: errors.array(),
+    });
+  }
+  next();
+};
+
 module.exports = validate;

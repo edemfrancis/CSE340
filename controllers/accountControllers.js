@@ -4,6 +4,8 @@
 const utilities = require("../utilities");
 const accountModel = require("../models/account-model");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 async function buildLogin(req, res, next) {
   let nav = await utilities.getNav();
@@ -86,12 +88,15 @@ async function registerAccount(req, res) {
   ******************************************** */
 async function managementView(req, res, next) {
   let nav = await utilities.getNav();
-  res.render("inventory/management", {
+  const classificationSelect = await utilities.buildClassificationList()
+  res.render("./inventory/management", {
     title: "PICK OR CLICKS",
     nav,
     errors: null,
+    classificationSelect
   });
 }
+
 // Building classification view for adding classification name
 async function addClassificationView(req, res, next) {
   let nav = await utilities.getNav();
@@ -129,6 +134,57 @@ async function sanValClassification(req, res) {
   }
 }
 
+// week 5 weekly activity
+/* ****************************************
+ *  Process login request
+ * ************************************ */
+async function accountLogin(req, res) {
+  let nav = await utilities.getNav()
+  const { account_email, account_password } = req.body
+  const accountData = await accountModel.getAccountByEmail(account_email)
+  if (!accountData) {
+    req.flash("notice", "Please check your credentials and try again.")
+    res.status(400).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email,
+    })
+    return
+  }
+  try {
+    if (await bcrypt.compare(account_password, accountData.account_password)) {
+      delete accountData.account_password
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      if(process.env.NODE_ENV === 'development') {
+        res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+      } else {
+        res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+      }
+      return res.redirect("/account/")
+    }
+    else {
+      req.flash("message notice", "Please check your credentials and try again.")
+      res.status(400).render("account/login", {
+        title: "Login",
+        nav,
+        errors: null,
+        account_email,
+      })
+    }
+  } catch (error) {
+    throw new Error('Access Forbidden')
+  }
+}
+
+async function accountMananagement(req, res){
+  let nav = await utilities.getNav()
+  res.render("manage/management", {
+    title: "Account Management",
+    nav,
+    errors: null
+  })
+}
 
 
 module.exports = {
@@ -138,4 +194,6 @@ module.exports = {
   addClassificationView,
   sanValClassification,
   managementView,
+  accountLogin,
+  accountMananagement
 };

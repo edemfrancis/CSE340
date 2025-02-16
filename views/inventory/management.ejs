@@ -1,8 +1,28 @@
-<h1><%= title %> </h1>
-
+<% if (title) { %>
+    <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+  
+  <% message %>
+  
+  <% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
 <div>
     <ul>
         <li><a href="/inventory/cclassification-view">Add new classification</a></li>
         <li><a href="/inventory/add-vehicle">Add new Inventory</a></li>
     </ul>
+
+    <h2>Add Inventory Manager</h2>
+    <p>Select from the list of classification below</p>
+    <%- classificationSelect %>
+    <table id="inventoryDisplay"></table>
+    <noscript>JavaScript must be enabled to use this page.</noscript>
 </div>
+<script src="../../js/inventory.js"></script>
