@@ -179,6 +179,25 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
-
+// Week 5 assignmnet
+/* ****************************************
+ *  Check user authorization, block unauthorized users
+ * ************************************ */
+Util.isAuthorized = async (req, res, next) => {
+  let auth = 0;  
+  if (res.locals.loggedin) {
+    const account = res.locals.accountData;
+    account.account_type == "Admin" || account.account_type == "Employee"
+      ? (auth = 1)
+      : (auth = 0);
+  }
+  if (!auth) {
+    req.flash("notice", "Please log in")
+    res.redirect("/account/login")
+    return;
+  } else {
+    next();
+  }
+};
  
 module.exports = Util;

@@ -3,6 +3,7 @@ const router = new express.Router()
 const invController = require("../controllers/invController");
 const invCont = require("../controllers/invController");
 const regValidate = require("../utilities/account-validation");
+const invValidate = require("../utilities/inventory-validation")
 
 const utilities = require("../utilities")
 const account = require("../controllers/accountControllers");
@@ -35,7 +36,7 @@ router.post(
 );
 
 // add inventory routes
-router.get("/add-vehicle", invCont.buildDropDownList)
+router.get("/add-vehicle", utilities.isAuthorized, invCont.buildDropDownList)
 router.post(
   "/add-vehicle",
   regValidate.vehicleRules(),
@@ -45,4 +46,15 @@ router.post(
 
 // WEEK 5 ASSIGNMNENT, creating aa route for displaying table in management view
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/delete/:inv_id", utilities.isAuthorized, utilities.handleErrors(invController.deleteView))
+router.post("/delete", utilities.handleErrors(invController.deleteItem))
+
+router.get("/edit/:inv_id", utilities.isAuthorized, utilities.handleErrors(invController.buildVehicleEdit))
+.post(
+  "/update",
+  utilities.isAuthorized,
+  regValidate.vehicleRules(),
+  invValidate.checkVehicleUpdateData,
+  utilities.handleErrors(invController.updateVehicle))
+
 module.exports = router;
